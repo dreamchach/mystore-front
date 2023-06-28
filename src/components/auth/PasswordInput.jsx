@@ -9,7 +9,7 @@ const PasswordInput = ({register, errors}) => {
   return (
     <div>
         <TextField 
-            label='password' 
+            label='비밀번호' 
             required 
             id='password' 
             sx={{m : 1, width : '35ch'}} 

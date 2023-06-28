@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { registerUser } from "./thunkFunctions"
+import { addProduct, loginUser, registerUser } from "./thunkFunctions"
 
 const initialState = {
     userData : {
@@ -23,6 +23,28 @@ const userSlice = createSlice({
             state.isLoading = false
         })
         .addCase(registerUser.rejected, (state, action) => {
+            state.isLoading = false
+            state.error = action.payload
+        })
+
+        .addCase(loginUser.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(loginUser.fulfilled, (state) => {
+            state.isLoading = false
+        })
+        .addCase(loginUser.rejected, (state, action) => {
+            state.isLoading = false
+            state.error = action.payload
+        })
+
+        .addCase(addProduct.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(addProduct.fulfilled, (state) => {
+            state.isLoading = false
+        })
+        .addCase(addProduct.rejected, (state, action) => {
             state.isLoading = false
             state.error = action.payload
         })

@@ -1,3 +1,4 @@
+import { getCookie } from "@/utill/cookies"
 import axios from "axios"
 
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
@@ -12,7 +13,13 @@ export const instance = axios.create({
 instance.interceptors.request.use(
     (config) => {
         if(config.headers) {
-            config.headers.authorization = `hello `
+            const token = getCookie('accessToken')
+            config.headers.authorization = `hello ${token}`
+
+            if(getCookie('masterkey')) {
+                config.headers.masterkey = true
+            }
+            
             return config
         }
     },

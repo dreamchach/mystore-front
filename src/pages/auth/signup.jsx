@@ -1,28 +1,36 @@
 import { Box, Button} from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { registerUser } from '@/store/thunkFunctions'
 import Title from '@/components/Title'
-import RequireTextInput from '@/components/signup/RequireTextInput'
-import PasswordInput from '@/components/signup/PasswordInput'
-import PhotoUpload from '@/components/signup/PhotoUpload'
+import RequireTextInput from '@/components/auth/RequireTextInput'
+import PasswordInput from '@/components/auth/PasswordInput'
+import PhotoUpload from '@/components/auth/PhotoUpload'
 
-const Sign = () => {
+const Signup = () => {
   const [image, setImage] = useState('')
   const {register, handleSubmit, formState : {errors}} = useForm()
   const router = useRouter()
   const dispatch = useDispatch()
   const onSubmit = async (data) => {
       const body = {...data, profileImgBase64 : image}
-      console.log(body)
-      await dispatch(registerUser(body, router))
-      await router.push({pathname : '/'})
+      await dispatch(registerUser(body))
+
+      if(getCookie('accessToken')){
+        await router.push({pathname : '/'})
+      }
   }
   const goLogin = () => {
     router.push({pathname : '/auth/login'})
   }
+
+  useEffect(() => {
+    if(getCookie('accessToken')) {
+      router.push({pathname : '/'})
+    }
+  }, [])
 
   return (
     <div className='mb-14'>
@@ -69,4 +77,4 @@ const Sign = () => {
   )
 }
 
-export default Sign
+export default Signup
