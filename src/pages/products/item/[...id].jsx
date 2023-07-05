@@ -1,9 +1,20 @@
-import { instance } from "@/apis/instance"
-import { useEffect, useState } from "react"
-import DoNotDisturbIcon from '@mui/icons-material/DoNotDisturb';
-import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+const NoSSR = dynamic(() => import('../../../components/products/Id'), {ssr : false})
 
 const Item = () => {
+
+  
+  return (
+    <main>
+      <NoSSR />
+    </main>
+  )
+}
+
+export default Item
+
+/*
   const [itemProducts, setItemProducts] = useState({})
   const router = useRouter()
   const detailId = router.asPath.substring(15)
@@ -14,10 +25,7 @@ const Item = () => {
     console.log(response)
     // setItemProducts(response.data.products)
   }, [])
-  
-  return (
-    <main>
-      {Object.keys(itemProducts).length === 0 ? 
+        {Object.keys(itemProducts).length === 0 ? 
       <div>
         <div className="flex justify-center py-14">
           <DoNotDisturbIcon sx={{fontSize : 100}}/>
@@ -29,8 +37,4 @@ const Item = () => {
         {itemProducts.title}
       </div>
       )}
-    </main>
-  )
-}
-
-export default Item
+      */

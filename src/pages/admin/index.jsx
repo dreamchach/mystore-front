@@ -1,17 +1,8 @@
-import { getCookie } from '@/utill/cookies'
 import { Button } from '@mui/material'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 const Admin = () => {
-    const router = useRouter()
-
-    useEffect(() => {
-        if(!getCookie('masterkey')){
-            router.push({pathname : '/'})
-        }
-    }, [getCookie('masterkey')])
     
   return (
     <div className='flex justify-center gap-5 mt-10 flex-col items-center'>

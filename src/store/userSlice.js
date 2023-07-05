@@ -18,9 +18,13 @@ const userSlice = createSlice({
     extraReducers : (builder) => {
         builder.addCase(registerUser.pending, (state) => {
             state.isLoading = true
+            console.log('state', state)
         })
-        .addCase(registerUser.fulfilled, (state) => {
+        .addCase(registerUser.fulfilled, (state, action) => {
             state.isLoading = false
+            state.user.userData = action.payload.auth
+            console.log('action', action.payload.auth)
+            console.log('state', state)
         })
         .addCase(registerUser.rejected, (state, action) => {
             state.isLoading = false
@@ -30,8 +34,11 @@ const userSlice = createSlice({
         .addCase(loginUser.pending, (state) => {
             state.isLoading = true
         })
-        .addCase(loginUser.fulfilled, (state) => {
+        .addCase(loginUser.fulfilled, (state, action) => {
             state.isLoading = false
+            state.userData = action.payload.auth
+            console.log(action.payload.auth)
+            console.log('state', state.userData)
         })
         .addCase(loginUser.rejected, (state, action) => {
             state.isLoading = false

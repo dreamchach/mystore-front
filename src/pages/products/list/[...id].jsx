@@ -2,23 +2,36 @@ import { instance } from "@/apis/instance"
 import { useEffect, useState } from "react"
 import DoNotDisturbIcon from '@mui/icons-material/DoNotDisturb';
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+const NoSSR = dynamic(()=>import('../../../components/products/List'), {ssr : false})
 
 const Tags = () => {
+
+  
+  return (
+    <main>
+      <NoSSR/>
+    </main>
+  )
+}
+
+export default Tags
+
+/*
   const [listProducts, setListProducts] = useState([])
   const router = useRouter()
   const data = {
     searchTag : router.asPath.substring(15)
   }
+  console.log(data)
 
   useEffect(async () => {
     const response = await instance.post('/api/products/search', data)
 
     setListProducts(response.data.products)
   }, [])
-  
-  return (
-    <main>
-      {listProducts.length === 0 ? 
+{listProducts.length === 0 ? 
       <div>
         <div className="flex justify-center py-14">
           <DoNotDisturbIcon sx={{fontSize : 100}}/>
@@ -30,8 +43,4 @@ const Tags = () => {
           {item.title}
         </div>
       ))}
-    </main>
-  )
-}
-
-export default Tags
+      */

@@ -8,6 +8,7 @@ import Title from '@/components/Title'
 import RequireTextInput from '@/components/auth/RequireTextInput'
 import PasswordInput from '@/components/auth/PasswordInput'
 import PhotoUpload from '@/components/auth/PhotoUpload'
+import { getCookie } from '@/utill/cookies'
 
 const Signup = () => {
   const [image, setImage] = useState('')

@@ -8,7 +8,7 @@ export default function Document() {
         <link href="https://fonts.googleapis.com/css2?family=Diphylleia&display=swap" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet"/>
       </Head>
-      <body className='font-normal'>
+      <body className='font-normal mb-14'>
         <Main />
         <NextScript />
       </body>

@@ -1,21 +1,12 @@
 import { instance } from '@/apis/instance'
-import { getCookie } from '@/utill/cookies'
 import { Button, Fab, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import AddIcon from '@mui/icons-material/Add';
 
 const Viewfile = () => {
-  const router = useRouter()
   const [items, setItems] = useState([])
   const [rows, setRows] = useState([])
-
-  useEffect(() => {
-      if(!getCookie('masterkey')){
-          router.push({pathname : '/'})
-      }
-  }, [getCookie('masterkey')])
 
   useEffect(async () => {
     const response = await instance.get('/api/products')

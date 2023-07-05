@@ -20,6 +20,9 @@ module.exports = {
         main : '#FF8066',
         main_white : '#FFF7F3',
         main_black : '#3A2726'
+      },
+      padding : {
+        full : '100%'
       }
     },
   },
