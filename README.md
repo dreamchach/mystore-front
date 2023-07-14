@@ -1,38 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 1차 프로젝트 완료
 
-## Getting Started
+## 목표
+- 채과상 판매 사이트 생성
+- Node.js 실사용
+- 전체적인 사이트구조 파악
 
-First, run the development server:
+## 완료 후 필요하다고 생각한 점
+- Node.js 사용 시 MongoDB 공부가 부족하다고 느낌
+- 접근성을 높이기 위해 앱으로 만드는 공부가 필요하다고 느낌 (React Native)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 웹사이트에 추가할 점
+- 고객에게 받을 전화번호와 주소 받기 
+- 회원에게 기본주소 받아서 저장할 것(backend 처리)
+- 배송상태에 따라 전송여부 / 취소여부 보여줄 것
+- 소셜 미디어 로그인 제어
+- 구매개수를 전체 구매개수로 변환(현재는 24개를 한꺼번에 구매해도 1개만 구매했다고 되어있음, backend 처리)
+- `Client-side Exception Occurred`에러 해소
+- 상수 정리
+- 함수 정리
