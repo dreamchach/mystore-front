@@ -3,6 +3,7 @@ import { Button, Fab, Paper, Table, TableBody, TableCell, TableContainer, TableH
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import AddIcon from '@mui/icons-material/Add';
+import withAdmin from '@/components/withAdmin';
 
 const Viewfile = () => {
   const [items, setItems] = useState([])
@@ -46,8 +47,8 @@ const Viewfile = () => {
 
                   <TableRow key={row.title}>
                       <TableCell>{row.title}</TableCell>
-                      <TableCell>{row.price} (원)</TableCell>
-                      <TableCell>{row.sold} (개)</TableCell>
+                      <TableCell>{Number(row.price).toLocaleString()} (원)</TableCell>
+                      <TableCell>{Number(row.sold).toLocaleString()} (개)</TableCell>
                       <TableCell>{row.isSoldOut ? '매진' : '재고 있음'}</TableCell>
                       <TableCell>
                         <Link href={`/admin/${row.productId}`}>
@@ -73,4 +74,4 @@ const Viewfile = () => {
   )
 }
 
-export default Viewfile
+export default withAdmin(Viewfile) 

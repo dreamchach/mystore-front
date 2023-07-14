@@ -12,7 +12,7 @@ const ProductInfo = ({title, price, sold, isSoldOut, tag, change, data, setData}
         }
     }
     console.log(won(price))
-    console.log(change)
+    console.log(isSoldOut)
 
   return (
     <div className='w-1/2 p-8 border border-main_black'>
@@ -65,7 +65,7 @@ const ProductInfo = ({title, price, sold, isSoldOut, tag, change, data, setData}
             <div className='mb-5'>
                 <div>상품이 매진되었나요?</div>
                 <FormControlLabel 
-                    control={<Switch defaultValue={isSoldOut ? true : false} disabled={change ? false : true}/>}
+                    control={<Switch defaultChecked={isSoldOut ? true : false} disabled={change ? false : true}/>}
                     label='매진'
                     labelPlacement='end'
                     onChange={(event) => setData({...data, isSoldOut : event.target.checked})}

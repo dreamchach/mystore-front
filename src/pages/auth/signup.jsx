@@ -1,5 +1,5 @@
 import { Box, Button} from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
@@ -9,6 +9,7 @@ import RequireTextInput from '@/components/auth/RequireTextInput'
 import PasswordInput from '@/components/auth/PasswordInput'
 import PhotoUpload from '@/components/auth/PhotoUpload'
 import { getCookie } from '@/utill/cookies'
+import withNoneAuth from '@/components/withNoneAuth'
 
 const Signup = () => {
   const [image, setImage] = useState('')
@@ -26,12 +27,6 @@ const Signup = () => {
   const goLogin = () => {
     router.push({pathname : '/auth/login'})
   }
-
-  useEffect(() => {
-    if(getCookie('accessToken')) {
-      router.push({pathname : '/'})
-    }
-  }, [])
 
   return (
     <div className='mb-14'>
@@ -54,7 +49,7 @@ const Signup = () => {
           />
           <PasswordInput
             errors = {errors} 
-            register = {register('password', {require : '비밀번호를 입력해주세요', minLength : {value : 8, message : '비밀번호는 8자리 이상입니다'}, pattern : {value : /^[A-Za-z0-9]{8,}$/, message : '비밀번호 형식에 맞지 않습니다'} })}
+            register = {register('password', {require : '비밀번호를 입력해주세요', minLength : {value : 8, message : '비밀번호는 8자리 이상입니다'}, pattern : {value : /^[a-zA-Z0-9]{8,}$/, message : '비밀번호 형식에 맞지 않습니다'} })}
           />
           <PhotoUpload setImage={setImage} image={image}/>
           <Box sx={{width : '35ch'}}>
@@ -78,4 +73,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default withNoneAuth(Signup) 

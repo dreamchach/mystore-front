@@ -1,3 +1,4 @@
+import withAdmin from '@/components/withAdmin'
 import { Button } from '@mui/material'
 import Link from 'next/link'
 import React from 'react'
@@ -20,4 +21,4 @@ const Admin = () => {
   )
 }
 
-export default Admin
+export default withAdmin(Admin) 

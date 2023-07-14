@@ -7,7 +7,7 @@ import Title from '@/components/Title'
 import RequireTextInput from '@/components/auth/RequireTextInput'
 import PasswordInput from '@/components/auth/PasswordInput'
 import { getCookie } from '@/utill/cookies'
-import { useEffect } from 'react'
+import withNoneAuth from '@/components/withNoneAuth'
 
 const Login = () => {
   const {register, handleSubmit, formState : {errors}} = useForm()
@@ -23,13 +23,6 @@ const Login = () => {
   const goSignup = () => {
     router.push({pathname : '/auth/signup'})
   }
-
-  useEffect(() => {
-    if(getCookie('accessToken')) {
-      router.push({pathname : '/'})
-    }
-  }, [])
-  
 
   return (
     <div className='mb-14'>
@@ -63,4 +56,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default withNoneAuth(Login) 

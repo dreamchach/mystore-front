@@ -1,15 +1,17 @@
 import { instance } from '@/apis/instance'
+import { cartProduct } from '@/store/thunkFunctions'
 import { ExpandMore } from '@mui/icons-material'
 import { Accordion, AccordionDetails, AccordionSummary, Button, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import ReactImageGallery from 'react-image-gallery'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Id = () => {
     const [id, setId] = useState(location.pathname.substring(15))
     const [product, setProduct] = useState({})
     const [images, setImages] = useState([])
+    const dispatch = useDispatch()
     const userData = useSelector(state => state.user.userData)
     const router = useRouter()
     const noImage = `https://www.gtn-co.com/cms/wp-content/uploads/2020/06/noimage.jpg`
@@ -20,9 +22,8 @@ const Id = () => {
                 productId : id
             }
             console.log(data)
-            const response = await instance.post('/api/products/buy', data)
-            console.log(response)
-            router.push('/auth/mypage/cart')
+            await dispatch(cartProduct(data))
+            await router.push('/auth/mypage/cart')
         } catch (error) {
             console.log(error)
         }
@@ -30,6 +31,7 @@ const Id = () => {
 
     useEffect(async () => {
         const response = await instance.get(`/api/products/${id}`)
+        console.log(response)
         setProduct(response.data.product)
     }, [])
 
@@ -42,12 +44,14 @@ const Id = () => {
                 setImages(array)
             }else {
                 product.photo.map((item) => {
+                    console.log(item)
                     array.push({
                         original : `${process.env.NEXT_PUBLIC_API_BASE_URL}/image/${item}`,
                         thumbnail : `${process.env.NEXT_PUBLIC_API_BASE_URL}/image/${item}`
                     })
                 })
                 setImages(array)
+                console.log(array)
             }
         }
     }, [product])
@@ -69,7 +73,7 @@ const Id = () => {
                     {`${Number(product.price).toLocaleString()}원`}
                 </div>
                 <div onClick={() => onPurchase(product.productId)}>
-                    <Button variant='outlined' color='error' sx={{width : '100%'}}>구매하기</Button>
+                    <Button variant='outlined' color='error' sx={{width : '100%'}}>장바구니로</Button>
                 </div>
             </div>
         </div>

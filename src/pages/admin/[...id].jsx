@@ -1,3 +1,4 @@
+import withAdmin from '@/components/withAdmin'
 import dynamic from 'next/dynamic'
 import React from 'react'
 
@@ -15,4 +16,4 @@ const AdminProduct = () => {
   )
 }
 
-export default AdminProduct
+export default withAdmin(AdminProduct) 

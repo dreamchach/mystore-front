@@ -2,6 +2,7 @@ import Title from '@/components/Title'
 import PhotoUpload from '@/components/admin/PhotoUpload'
 import TagSelect from '@/components/admin/TagSelect'
 import TextInput from '@/components/admin/TextInput'
+import withAdmin from '@/components/withAdmin'
 import { addProduct } from '@/store/thunkFunctions'
 import { Button } from '@mui/material'
 import React, { useState } from 'react'
@@ -70,4 +71,4 @@ const AddFile = () => {
   )
 }
 
-export default AddFile
+export default withAdmin(AddFile) 

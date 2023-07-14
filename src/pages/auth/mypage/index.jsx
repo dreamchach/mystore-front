@@ -1,21 +1,22 @@
+import withAuth from '@/components/withAuth'
 import { Button } from '@mui/material'
 import Link from 'next/link'
 import React from 'react'
 
-const index = () => {
+const Index = () => {
   return (
-    <div>
+    <div className='flex flex-col items-center mt-12 gap-5'>
         <Link href='/auth/mypage/info'>
-            <Button>내 정보 보기</Button>
+            <Button variant='outlined' color='error' sx={{width : '300px'}}>내 정보 보기</Button>
         </Link>
         <Link href='/auth/mypage/cart'>
-            <Button>장바구니</Button>
+            <Button variant='outlined' color='error' sx={{width : '300px'}}>장바구니</Button>
         </Link>
         <Link href='/auth/mypage/history'>
-            <Button>구매한 목록</Button>
+            <Button variant='outlined' color='error' sx={{width : '300px'}}>구매한 목록</Button>
         </Link>
     </div>
   )
 }
 
-export default index
+export default withAuth(Index) 

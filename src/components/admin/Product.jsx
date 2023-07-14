@@ -14,6 +14,8 @@ const Product = () => {
     if(!change) {
       setChange(true)
     }else {
+      console.log(id)
+      console.log(data)
       if(data === null) {
         setChange(false)
       } else {

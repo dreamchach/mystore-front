@@ -3,11 +3,13 @@ import LoginIcon from '@mui/icons-material/Login';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Link from 'next/link';
 import { getCookie } from '@/utill/cookies';
-import { Button } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 const MyButton = () => {
     const [login, setLogin] = useState(false)
     const [admin, setAdmin] = useState(false)
+    const profileImage = useSelector(state => state.user.userData.profileImgBase64)
     
     useEffect(() => {
         if(getCookie('accessToken')) {
@@ -20,10 +22,9 @@ const MyButton = () => {
             setAdmin(true)
         }
     }, [getCookie('masterkey')])
-    
 
   return (
-    <div className='hover:text-main flex gap-1.5'>
+    <div className='flex gap-1.5'>
         {admin &&
             <Link href='/admin'>
                 <Button variant='outlined' color='error'>
@@ -38,7 +39,7 @@ const MyButton = () => {
                     <span>로그인</span>
                 </Link> : 
                 <Link href='/auth/mypage'>
-                    <AccountCircleIcon/>
+                    {profileImage === '' ? <AccountCircleIcon/> : <Avatar alt='profileImage' src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/image/${profileImage}`}/>}               
                 </Link>
             }
         </button>
