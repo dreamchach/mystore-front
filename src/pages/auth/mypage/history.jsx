@@ -29,7 +29,7 @@ const History = () => {
       {historys.length > 0 && historys.map((item) => (
         <div key={item.item.detailId} className='flex items-center w-full border-b border-slate-300'>
           <div className='w-1/5'>
-            <img src={item.data.thumbnail[0] === '' ? noImage : `${process.env.NEXT_PUBLIC_API_BASE_URL}/image/${item}`} alt={item.data.tile}/>
+            <img src={item.data.thumbnail[0] === '' ? noImage : `${process.env.NEXT_PUBLIC_API_BASE_URL}/image/${item.data.thumbnail[0]}`} alt={item.data.title}/>
           </div>
           <div className='w-1/5 text-center'>{item.data.title}</div>
           <div className='w-1/5 text-center'>{Number(item.data.price * item.item.qua).toLocaleString()}원</div>
